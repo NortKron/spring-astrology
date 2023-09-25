@@ -1,12 +1,15 @@
 package com.astrology.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -14,13 +17,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 
 /**
  * @author
  */
 @Configuration
 @ComponentScan("com.astrology")
-@SpringBootApplication
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer
 {
@@ -42,6 +45,11 @@ public class SpringConfig implements WebMvcConfigurer
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/views/");
 		templateResolver.setSuffix(".html");
+		/*
+		templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCacheable(true);
+		*/
 		return templateResolver;
 	}
 
@@ -50,7 +58,7 @@ public class SpringConfig implements WebMvcConfigurer
 	{
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
-		templateEngine.setEnableSpringELCompiler(true);
+		templateEngine.setEnableSpringELCompiler(true);		
 		return templateEngine;
 	}
 
@@ -59,33 +67,38 @@ public class SpringConfig implements WebMvcConfigurer
 	{
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
 		resolver.setTemplateEngine(templateEngine());
-		registry.viewResolver(resolver);
-	}
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry)
-	{
-		/*
-		 * WebMvcConfigurer.super.addResourceHandlers(registry); registry
-		 * .addResourceHandler("/**") .addResourceLocations("file:" + appPath +
-		 * "src/main/webapp/resources/css/");
-		 */
-
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/*.html").addResourceLocations("/WEB-INF/");
 		
-		registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        resolver.setCharacterEncoding("UTF-8");
+        //resolver.setForceContentType(true);
+        //resolver.setContentType("text/html; charset=UTF-8");
+        
+        registry.viewResolver(resolver);
 	}
 
 	@Bean
-	public ThymeleafViewResolver thymeleafViewResolver()
+	public DataSource dataSource()
 	{
-		ThymeleafViewResolver thymeleafViewResolver = new ThymeleafViewResolver();
-		thymeleafViewResolver.setTemplateEngine(templateEngine());
-		thymeleafViewResolver.setCharacterEncoding("UTF-8");
-		thymeleafViewResolver.setContentType("text/html; charset=UTF-8"); // <= 1, после установки контекста
-																			// ForceContentType сбрасывается в false
-		thymeleafViewResolver.setForceContentType(true); // <= 2
-		return thymeleafViewResolver;
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
+		dataSource.setDriverClassName("org.postgresql.Driver");
+		dataSource.setUrl("jdbc:postgresql://localhost:5432/astrology_db");
+		dataSource.setUsername("postgres");
+		dataSource.setPassword("4231");
+
+		return dataSource;
+	}
+
+	@Bean
+	public JdbcTemplate jdbcTemplate()
+	{
+		return new JdbcTemplate(dataSource());
+	}
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry)
+	{
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/*.html").addResourceLocations("/WEB-INF/");
+		//registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 	}
 }

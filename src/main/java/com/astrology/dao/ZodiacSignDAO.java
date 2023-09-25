@@ -1,5 +1,6 @@
 package com.astrology.dao;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +10,13 @@ import com.astrology.models.ZodiacSign;
 public class ZodiacSignDAO
 {
 	private static int ZODIAC_COUNT;
+	
+	private static final String URL = "jdbc:postgresql://localhost:5432/astrology_db";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "4231";
+    
+    private static Connection connection;
+	
 	private List<ZodiacSign> zodiacs;
 
 	{

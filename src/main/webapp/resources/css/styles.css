@@ -1,5 +1,5 @@
 body {
-	background: #fff url('stars.jpg');
+	background: #fff url('/spring-astrology/resources/img/stars.jpg');
 	color: #fff;
 	background-attachment: fixed;
 	background-size: 100%;
@@ -14,7 +14,6 @@ body {
 	font-size: 50pt;
 	text-align: center;
 }
-
 
 .button {
 	/* Сбрасываем дефолтные стили */
@@ -48,7 +47,6 @@ body {
 .button.purple {
 	background: #9b59b6;
 }
-
 
 .button:hover {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
