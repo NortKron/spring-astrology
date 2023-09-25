@@ -1,7 +1,7 @@
 const newButton = document.getElementById('horoscope');
 
 function changeBackground() {
-	alert("Гороскоп скоро заработает!");
+	alert("Генератор гороскопов скоро заработает!");
 }
 
 newButton.addEventListener('click', changeBackground);
