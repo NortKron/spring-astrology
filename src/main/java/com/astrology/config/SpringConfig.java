@@ -17,7 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
-import org.thymeleaf.templatemode.TemplateMode;
 
 /**
  * @author
@@ -52,7 +51,7 @@ public class SpringConfig implements WebMvcConfigurer
 		*/
 		return templateResolver;
 	}
-
+	
 	@Bean
 	public SpringTemplateEngine templateEngine()
 	{
@@ -87,7 +86,7 @@ public class SpringConfig implements WebMvcConfigurer
 
 		return dataSource;
 	}
-
+	
 	@Bean
 	public JdbcTemplate jdbcTemplate()
 	{
