@@ -16,6 +16,7 @@
 	<properties>
 		<spring.version>5.2.1.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
