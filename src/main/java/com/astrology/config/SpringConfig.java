@@ -77,6 +77,9 @@ public class SpringConfig implements WebMvcConfigurer
 	@Bean
 	public DataSource dataSource()
 	{
+		/*
+		 * TODO: Added to read parameters from file 
+		 */
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 		dataSource.setDriverClassName("org.postgresql.Driver");
