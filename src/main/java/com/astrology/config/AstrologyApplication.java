@@ -13,7 +13,7 @@ public class AstrologyApplication
 {
 	//private static Logger LOG = LoggerFactory.getLogger(AstrologyApplication.class);
 
-	public static void main(String[] args)
+	public static void main(String[] args) throws Exception
 	{
 		System.out.println("----------> Start!! <----------");
 		SpringApplication.run(AstrologyApplication.class, args);
