@@ -1,5 +1,5 @@
 body {
-	background: #fff url('/spring-astrology/resources/img/stars.jpg');
+	background: #fff url('https://spring-astrology-089f48276163.herokuapp.com/static/img/stars.jpg');
 	color: #fff;
 	background-attachment: fixed;
 	background-size: 100%;
