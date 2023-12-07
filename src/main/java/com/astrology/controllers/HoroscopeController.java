@@ -64,12 +64,13 @@ public class HoroscopeController
 		
 		//model.addAttribute("people", personDAO.index());
 		
-		List<HoroscopeType> horoscopeTypeList = horoscopeDAO.index();
-		int horoscopeId = horoscopeDAO.index().get(0).getHoroscopeId();
+		//List<HoroscopeType> horoscopeTypeList = horoscopeDAO.index();
+		int horoscopeId = 0; 
+				//horoscopeDAO.index().get(0).getHoroscopeId();
 		
-		model.addAttribute("horoscopes", horoscopeTypeList);		
-		model.addAttribute("signs", signTypeDAO.index(horoscopeId));
-		model.addAttribute("genders", genderTypeDAO.index());
+		//model.addAttribute("horoscopes", horoscopeTypeList);
+		//model.addAttribute("signs", signTypeDAO.index(horoscopeId));
+		//model.addAttribute("genders", genderTypeDAO.index());
 		return "form";
 	}
 	

@@ -38,12 +38,12 @@ public class SpringConfig implements WebMvcConfigurer
 		 * TODO: Added to read parameters from file 
 		 */
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		
+		/*
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/astrology_db");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("4231");
-		
+		*/
 		return dataSource;
 	}
 	

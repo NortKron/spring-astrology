@@ -9,61 +9,6 @@
 	<link rel="icon" type="image/x-icon" th:href="@{/static/img/favicon-128.png}" />
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			var spring_url = "/spring-astrology";
-
-			$('#GetHoroscope').click(function () {
-				var horoscopeParameters = {
-					horoscopeId: $('#horoscopeId').val(),
-					signId: $('#signId').val(),
-					genderId: $('#genderId').val()
-				}
-				
-				$.ajax({
-					type: 'POST',
-					data: JSON.stringify(horoscopeParameters),
-					contentType: "application/json;",
-					url: spring_url + '/horoscope',
-					success: function (result) {
-						console.log(result);
-						$('#forecast').text(result['Forecast']);
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						alert('Error occurred! ' + textStatus + '; ' + errorThrown);
-					}
-				});
-			});
-			
-			$(document).on('change', '#horoscopeId', function() {
-				var horoscopeId = $('#horoscopeId').val();
-				
-				console.log('>>> Id = ' + horoscopeId);
-				
-				$.ajax({
-					type: 'POST',
-					data: {
-						horoscopeId : horoscopeId
-					},
-					url: spring_url + '/horoscope/signs',
-					success: function (result) {
-						
-						var select_opt = '';
-						
-						for (var i = 0; i < result.length; i++) {							
-							select_opt += '<option value="' + result[i].signId 
-								+ '">' + result[i].signName + '</option>';
-						}
-						$('#signId').html(select_opt);
-					},
-					error: function (jqXHR, textStatus, errorThrown) {
-						alert('Error occurred! ' + textStatus + '; ' + errorThrown);
-					}
-				});
-			});
-
-		});
-	</script>
 </head>
 
 <body>
@@ -74,23 +19,37 @@
 	<fieldset>
 		<label for="name">Выберите тип гороскопа:</label>
 		<select name="horoscope" id="horoscopeId">
-			<option th:each="horoscope : ${horoscopes}" th:value="${horoscope.getHoroscopeId()}"
-				th:text="${horoscope.getHoroscopeName()}">value</option>
+			<option value="1">Зодиакальный гороскоп</option>
+			<option value="2">Китайский гороскоп</option>
 		</select>
 		<br />
 		<label for="name">Выберите знак:</label>
 		<select name="sign" id="signId">
-			<option th:each="sign : ${signs}" th:value="${sign.getSignId()}" th:text="${sign.getSignName()}">value</option>
+			<option value="1">Овен</option>
+			<option value="2">Телец</option>
+			<option value="3">Близнецы</option>
+			<option value="4">Рак</option>
+			<option value="5">Лев</option>
+			<option value="6">Дева</option>
+			<option value="7">Весы</option>
+			<option value="8">Скорпион</option>
+			<option value="9">Змееносец</option>
+			<option value="10">Стрелец</option>
+			<option value="11">Козерог</option>
+			<option value="12">Водолей</option>
+			<option value="13">Рыбы</option>
 		</select>
 		<br />
 		<label>Выберите пол:</label>
 		<select name="gender" id="genderId">
-			<option th:each="gender : ${genders}" th:value="${gender.getGenderId()}" th:text="${gender.getGenderName()}">value</option>
+			<option value="1">Мужской</option>
+			<option value="2">Женский</option>
+			<option value="3">Вертолёт Апач</option>
 		</select>
 		<br />
 		<label>Ваш гороскоп:</label>
 		<br />
-		<textarea th:text="${forecast}" id="forecast">Выберите тип гороскопа</textarea>
+		<textarea id="forecast"></textarea>
 		<br />
 		<input type="button" value="Create!" id="GetHoroscope" />
 	</fieldset>

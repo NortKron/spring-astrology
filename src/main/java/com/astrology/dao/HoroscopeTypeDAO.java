@@ -24,7 +24,7 @@ public class HoroscopeTypeDAO
 
 	public List<HoroscopeType> index()
 	{
-		return jdbcTemplate.query("SELECT * FROM \"HoroscopeType\"", new BeanPropertyRowMapper<>(HoroscopeType.class)).subList(0, 1);		
+		return jdbcTemplate.query("SELECT * FROM \"HoroscopeType\"", new BeanPropertyRowMapper<>(HoroscopeType.class)); //.subList(0, 1);		
 	}
 	
 	public HoroscopeType show(int HoroscopeId)
