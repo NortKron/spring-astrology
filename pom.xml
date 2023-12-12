@@ -14,7 +14,7 @@
 	<groupId>com.astrology</groupId>
 	<artifactId>spring-astrology</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	
 	<name>Spring Astrology</name>
 	<description>Demo astroproject for Spring Boot</description>

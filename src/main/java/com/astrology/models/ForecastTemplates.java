@@ -15,24 +15,24 @@ public class ForecastTemplates
 		this.id = id;
 		this.Template = Template; 
 	}
-	
+
 	public int getId()
 	{
 		return id;
 	}
-	
+
 	public void setId(int id)
 	{
-		this.id= id;
+		this.id = id;
 	}
-	
+
 	public String getTemplate()
 	{
 		return Template;
 	}
-	
-	public void setTemplate(String Template)
+
+	public void setTemplate(String template)
 	{
-		this.Template = Template;
+		Template = template;
 	}
 }
