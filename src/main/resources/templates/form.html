@@ -4,14 +4,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Spring Astrology</title>
-	<link rel="stylesheet" type="text/css"
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 	<link rel="icon" type="image/x-icon" th:href="@{/static/img/favicon-128.png}" />
-
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			var spring_url = "/spring-astrology";
+			var spring_url = "https://spring-astrology-089f48276163.herokuapp.com";
 
 			$('#GetHoroscope').click(function () {
 				var horoscopeParameters = {
@@ -71,29 +69,27 @@
 	</div>
 
 	<br />
-	<fieldset>
-		<label for="name">Выберите тип гороскопа:</label>
-		<select name="horoscope" id="horoscopeId">
-			<option th:each="horoscope : ${horoscopes}" th:value="${horoscope.getHoroscopeId()}"
-				th:text="${horoscope.getHoroscopeName()}">value</option>
-		</select>
-		<br />
-		<label for="name">Выберите знак:</label>
-		<select name="sign" id="signId">
-			<option th:each="sign : ${signs}" th:value="${sign.getSignId()}" th:text="${sign.getSignName()}">value</option>
-		</select>
-		<br />
-		<label>Выберите пол:</label>
-		<select name="gender" id="genderId">
-			<option th:each="gender : ${genders}" th:value="${gender.getGenderId()}" th:text="${gender.getGenderName()}">value</option>
-		</select>
-		<br />
-		<label>Ваш гороскоп:</label>
-		<br />
-		<textarea th:text="${forecast}" id="forecast">Выберите тип гороскопа</textarea>
-		<br />
-		<input type="button" value="Create!" id="GetHoroscope" />
-	</fieldset>
+	<div class="parent">
+		<fieldset class="block-form">
+			<label for="name">Выберите тип гороскопа:</label> <select
+				name="horoscope" id="horoscopeId">
+				<option th:each="horoscope : ${horoscopes}"
+					th:value="${horoscope.getHoroscopeId()}"
+					th:text="${horoscope.getHoroscopeName()}">value</option>
+			</select> <br /> <label for="name">Выберите знак:</label> <select name="sign"
+				id="signId">
+				<option th:each="sign : ${signs}" th:value="${sign.getSignId()}"
+					th:text="${sign.getSignName()}">value</option>
+			</select> <br /> <label>Выберите пол:</label> <select name="gender"
+				id="genderId">
+				<option th:each="gender : ${genders}"
+					th:value="${gender.getGenderId()}"
+					th:text="${gender.getGenderName()}">value</option>
+			</select> <br /> <label>Ваш гороскоп:</label> <br />
+			<textarea th:text="${forecast}" id="forecast" style="height: 130px; width: 800px;">Выберите тип гороскопа</textarea>
+			<br /> <input type="button" value="Create!" id="GetHoroscope" />
+		</fieldset>
+	</div>
 	<br />
 
 	<div th:insert="~{footer :: footer}">

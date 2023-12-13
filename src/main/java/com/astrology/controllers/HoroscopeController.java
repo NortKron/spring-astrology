@@ -128,13 +128,27 @@ public class HoroscopeController
 	    //System.out.println("randId = " + randId);
 	    //System.out.println("prevForecastID = " + prevForecastID);
 	    
-	    if (prevForecastID != randId)
+	    if (prevForecastID == randId)
 	    {
-	    	prevForecastID = randId;
+	    	//System.out.println(">> prevForecastID = randId");
+	    	
+	    	boolean repTempl = true;
+	    	
+	    	while (repTempl)
+	    	{
+	    		randomIndex = new Random().nextInt(listForecast.size());
+	    		randId = listForecast.get(randomIndex).getId();
+	    		
+	    		if (prevForecastID != randId) 
+	    		{
+	    			repTempl = false;
+	    			//System.out.println(">> New randId!");
+	    		}
+	    	}
 	    }
 	    else
 	    {
-	    	System.out.println(">> prevForecastID = randId");
+	    	prevForecastID = randId;
 	    }
 	    
 	    String template = listForecast.get(randomIndex).getTemplate();
@@ -147,7 +161,6 @@ public class HoroscopeController
 		ret = ret.replace(WordBankFields.pl_gen.toString(), wordsBank.getPlGen());
 		
 		//System.out.println(">> finally forecast = " + ret);
-		
 		return ret;
 	}
 }

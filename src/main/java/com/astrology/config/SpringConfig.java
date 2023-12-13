@@ -2,29 +2,31 @@ package com.astrology.config;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 /**
- * @author
+ * @author Lex PopKorn
  */
 @Configuration
 @ComponentScan("com.astrology")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer
 {	
+	private final Environment env;
+	
+    public SpringConfig(Environment env) 
+	{
+        this.env = env;
+    }
+	
 	@Bean
 	public JdbcTemplate jdbcTemplate()
 	{
@@ -38,11 +40,17 @@ public class SpringConfig implements WebMvcConfigurer
 		 * TODO: Added to read parameters from file 
 		 */
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		/*
+        dataSource.setDriverClassName(env.getRequiredProperty("application.driver_class"));
+        dataSource.setUrl(env.getRequiredProperty("application.connection.url"));
+        dataSource.setUsername(env.getRequiredProperty("application.connection.username"));
+        dataSource.setPassword(env.getRequiredProperty("application.connection.password"));
+		*/
 		
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/astrology_db");
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("4231");
+        dataSource.setDriverClassName(System.getenv("driver_class"));
+        dataSource.setUrl(System.getenv("url"));
+        dataSource.setUsername(System.getenv("username"));
+        dataSource.setPassword(System.getenv("password"));
 		
 		return dataSource;
 	}
