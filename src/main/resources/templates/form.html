@@ -86,7 +86,7 @@
 					th:value="${gender.getGenderId()}"
 					th:text="${gender.getGenderName()}">value</option>
 			</select> <br /> <label>Ваш гороскоп:</label> <br />
-			<textarea th:text="${forecast}" id="forecast">Выберите тип гороскопа</textarea>
+			<textarea th:text="${forecast}" id="forecast" style="height: 130px; width: 800px;">Выберите тип гороскопа</textarea>
 			<br /> <input type="button" value="Create!" id="GetHoroscope" />
 		</fieldset>
 	</div>
