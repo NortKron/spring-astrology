@@ -9,7 +9,9 @@
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			var spring_url = "https://spring-astrology-089f48276163.herokuapp.com";
+			//var spring_url = "/spring-astrology";
+			var spring_url = window.location.href;
+			var errorMes = document.getElementById("ErrorMes");
 
 			$('#GetHoroscope').click(function () {
 				var horoscopeParameters = {
@@ -22,13 +24,15 @@
 					type: 'POST',
 					data: JSON.stringify(horoscopeParameters),
 					contentType: "application/json;",
-					url: spring_url + '/horoscope',
+					url: spring_url,
 					success: function (result) {
-						console.log(result);
+						//console.log(result);
+						errorMes.style.display = "none";
 						$('#forecast').text(result['Forecast']);
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						alert('Error occurred! ' + textStatus + '; ' + errorThrown);
+						errorMes.style.display = "block";
+						//alert('Error occurred! ' + textStatus + '; ' + errorThrown);
 					}
 				});
 			});
@@ -36,17 +40,16 @@
 			$(document).on('change', '#horoscopeId', function() {
 				var horoscopeId = $('#horoscopeId').val();
 				
-				console.log('>>> Id = ' + horoscopeId);
-				
 				$.ajax({
 					type: 'POST',
 					data: {
 						horoscopeId : horoscopeId
 					},
-					url: spring_url + '/horoscope/signs',
+					url: spring_url + '/signs',
 					success: function (result) {
 						
 						var select_opt = '';
+						errorMes.style.display = "none";
 						
 						for (var i = 0; i < result.length; i++) {							
 							select_opt += '<option value="' + result[i].signId 
@@ -55,11 +58,11 @@
 						$('#signId').html(select_opt);
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
-						alert('Error occurred! ' + textStatus + '; ' + errorThrown);
+						errorMes.style.display = "block";
+						//alert('Error occurred! ' + textStatus + '; ' + errorThrown);
 					}
 				});
 			});
-
 		});
 	</script>
 </head>
@@ -85,9 +88,13 @@
 				<option th:each="gender : ${genders}"
 					th:value="${gender.getGenderId()}"
 					th:text="${gender.getGenderName()}">value</option>
-			</select> <br /> <label>Ваш гороскоп:</label> <br />
-			<textarea th:text="${forecast}" id="forecast">Выберите тип гороскопа</textarea>
+			</select> 
+			<br /> 
+			<label>Ваш гороскоп:</label> 
+			<br />
+			<textarea th:text="${forecast}" id="forecast" style="height: 130px; width: 800px;">Выберите тип гороскопа</textarea>
 			<br /> <input type="button" value="Create!" id="GetHoroscope" />
+			<div id="ErrorMes" style="color: #f00; display: none">Ошибка при отправке запроса. Попробуйте ещё раз!</div>
 		</fieldset>
 	</div>
 	<br />
