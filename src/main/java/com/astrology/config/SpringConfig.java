@@ -40,17 +40,17 @@ public class SpringConfig implements WebMvcConfigurer
 		 * TODO: Added to read parameters from file 
 		 */
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		/*
+		
         dataSource.setDriverClassName(env.getRequiredProperty("application.driver_class"));
         dataSource.setUrl(env.getRequiredProperty("application.connection.url"));
         dataSource.setUsername(env.getRequiredProperty("application.connection.username"));
         dataSource.setPassword(env.getRequiredProperty("application.connection.password"));
-		*/
+		/*
         dataSource.setDriverClassName(System.getenv("driver_class"));
         dataSource.setUrl(System.getenv("url"));
         dataSource.setUsername(System.getenv("username"));
         dataSource.setPassword(System.getenv("password"));
-		
+		*/
 		return dataSource;
 	}
 	
