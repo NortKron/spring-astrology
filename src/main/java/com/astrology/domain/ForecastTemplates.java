@@ -1,4 +1,4 @@
-package com.astrology.models;
+package com.astrology.domain;
 
 public class ForecastTemplates
 {

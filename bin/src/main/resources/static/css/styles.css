@@ -1,0 +1,162 @@
+.body {
+	background: #fff url('https://spring-astrology-089f48276163.herokuapp.com/static/img/stars.jpg');	
+	color: #fff;
+	background-attachment: fixed;
+	background-size: 100%;
+}
+
+.block {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	font-size: 50pt;
+	text-align: center;
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+}
+
+.block-form {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -125px;
+}
+
+.button {
+	/* Сбрасываем дефолтные стили */
+	border: none;
+	outline: none;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 16px;
+	/* Можно также использовать любые встроенные и кастомные шрифты, например, отсюда  */
+	font-family: Roboto, Verdana, Tahoma, sans;
+	/* Тут можно поэкспериментировать */
+	padding: 12px 16px;
+	border-radius: 100px;
+	color: #fff;
+}
+
+.button i {
+	margin-right: 4px;
+}
+
+.button+.button {
+	margin-left: 6px;
+}
+
+.button.blue {
+	background: #2196F3;
+}
+
+.button.purple {
+	background: #9b59b6;
+}
+
+.button:hover {
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover.blue {
+	background: #39a1f4;
+}
+
+.button:active {
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button:active.blue {
+	background: #0d8aee;
+}
+
+
+.py-3 {
+	padding-top: 1rem !important;
+	padding-bottom: 1rem !important
+}
+
+.justify-content-center {
+	justify-content: center !important
+}
+
+.d-flex {
+	display: flex !important
+}
+
+.mb-3 {
+	margin-bottom: 1rem !important
+}
+
+.my-4 {
+	margin-top: 1.5rem !important;
+	margin-bottom: 1.5rem !important
+}
+
+.nav {
+	--bs-nav-link-padding-x: 1rem;
+	--bs-nav-link-padding-y: 0.5rem;
+	--bs-nav-link-color: var(--bs-link-color);
+	--bs-nav-link-hover-color: var(--bs-link-hover-color);
+	--bs-nav-link-disabled-color: #6c757d;
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	color: var(--bs-nav-tabs-link-active-color);
+	background-color: var(--bs-nav-tabs-link-active-bg);
+	border-color: var(--bs-nav-tabs-link-active-border-color)
+}
+
+.nav-pills {
+	--bs-nav-pills-border-radius: 0.375rem;
+	--bs-nav-pills-link-active-color: #fff;
+	--bs-nav-pills-link-active-bg: #0d6efd
+}
+
+.nav-link {
+	display: block;
+	padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+	font-size: var(--bs-nav-link-font-size);
+	font-weight: var(--bs-nav-link-font-weight);
+	color: var(--bs-nav-link-color);
+	text-decoration: none;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out,
+		border-color .15s ease-in-out;
+}
+
+.border-bottom {
+	border-bottom: var(--bs-border-width) var(--bs-border-style)
+		var(--bs-border-color) !important
+}
+
+.px-2 {
+	padding-right: .5rem !important;
+	padding-left: .5rem !important
+}
+
+.pb-3 {
+	padding-bottom: 1rem !important
+}
+
+.text-center {
+	text-align: center !important
+}
+

@@ -5,12 +5,12 @@ import com.astrology.dao.GenderTypeDAO;
 import com.astrology.dao.HoroscopeTypeDAO;
 import com.astrology.dao.SignTypeDAO;
 import com.astrology.dao.WordsBankDAO;
-import com.astrology.models.HoroscopeParameters;
-import com.astrology.models.HoroscopeType;
-import com.astrology.models.SignType;
-import com.astrology.models.WordsBank;
-import com.astrology.models.WordBankFields;
-import com.astrology.models.ForecastTemplates;
+import com.astrology.domain.ForecastTemplates;
+import com.astrology.domain.HoroscopeParameters;
+import com.astrology.domain.HoroscopeType;
+import com.astrology.domain.SignType;
+import com.astrology.domain.WordBankFields;
+import com.astrology.domain.WordsBank;
 
 import jakarta.validation.Valid;
 
